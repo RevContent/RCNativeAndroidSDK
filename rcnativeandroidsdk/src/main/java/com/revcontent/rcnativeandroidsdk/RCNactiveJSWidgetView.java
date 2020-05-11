@@ -1,6 +1,7 @@
 package com.revcontent.rcnativeandroidsdk;
 
 import android.content.Context;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import org.json.JSONObject;
@@ -31,6 +32,8 @@ public final class RCNactiveJSWidgetView extends WebView {
     public RCNactiveJSWidgetView(Context context){
         super(context);
         this.loadHTMLContent();
+        WebSettings webSettings = this.getSettings();
+        webSettings.setJavaScriptEnabled(true);
     }
 
     private void loadHTMLContent(){
