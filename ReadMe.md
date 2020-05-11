@@ -1,20 +1,20 @@
 
-##Introduction:
+## Introduction:
 
 An Android library written in Java for the Revcontent to enables you to receive the same ad fill you would see in our traditional ad placements in a more flexible format.
 
-##Prerequisites 
+## Prerequisites 
 
 - Android Studio
 - Androd SDK
 
-##Features 
+## Features 
 
 - Load widget by WidgetId
 - Load widget by SubId (Optional)
 - Flexible widget size
 
-#Installation 
+## Installation 
 
 - Create a new project in Android Studio as you would normally for e.g. MyApp.
 
@@ -33,7 +33,7 @@ An Android library written in Java for the Revcontent to enables you to receive 
             implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.0
         }
 
-##Usage
+## Usage
 
 
 		package com.revcontent.rcnativeandroidsdkexample;
@@ -62,6 +62,6 @@ An Android library written in Java for the Revcontent to enables you to receive 
     		}
         }
         
- ##License
+ ## License
  
  MIT
