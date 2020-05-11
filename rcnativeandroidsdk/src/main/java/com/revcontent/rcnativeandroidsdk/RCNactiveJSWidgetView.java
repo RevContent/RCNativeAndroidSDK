@@ -3,6 +3,8 @@ package com.revcontent.rcnativeandroidsdk;
 import android.content.Context;
 import android.webkit.WebView;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 public final class RCNactiveJSWidgetView extends WebView {
@@ -85,10 +87,11 @@ public final class RCNactiveJSWidgetView extends WebView {
         result = result.replace(jsSrcKey,jsSrcVal);
         result = result.replace(deferKey,deferVal);
         if(this.widgetSubId != null){
-//            let jsonData = try? JSONSerialization.data(withJSONObject: self.widgetSubId!, options: []);
-//            let jsonString = String(data: jsonData!, encoding: .utf8);
-//            let replacedJsonString = jsonString!.replacingOccurrences(of: "\"", with: "&quot;");
-//            result = result.replacingOccurrences(of: widgetSubIdKey, with: replacedJsonString);
+            JSONObject jsonObject = new JSONObject(this.widgetSubId);
+            String jsonString = jsonObject.toString();
+            System.out.println(jsonObject.toString());
+            String replacedJsonString = jsonString.replaceAll("\"", "&quot;");
+            result = result.replace(widgetSubIdKey,replacedJsonString);
         }else{
             result = result.replace(widgetSubIdKey,"");
         }
