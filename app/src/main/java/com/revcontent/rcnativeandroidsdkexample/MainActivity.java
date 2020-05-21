@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    @Override
     private RCNactiveJSWidgetView widgetView = null;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RCNativeSDK.setup();
