@@ -1,12 +1,12 @@
 
 ## Introduction:
 
-An Android library written in Java for the Revcontent to enables you to receive the same ad fill you would see in our traditional ad placements in a more flexible format.
+Revcontent's Android library written in Java for enables you quickly and reliably include our JS widgets into your application.
 
 ## Prerequisites 
 
 - Android Studio
-- Androd SDK
+- Android SDK
 
 ## Features 
 
