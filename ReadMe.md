@@ -23,14 +23,14 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
     	allprojects{
         	repositories{
             	...
-                maven { url ‘https://jitpack.io’ }
+                maven { url 'https://jitpack.io' }
             }
         }
 
 - In your app’s build.gradle add the dependency:
 
 	    dependencies{
-            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.0
+            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.0'
         }
 
 ## Usage
