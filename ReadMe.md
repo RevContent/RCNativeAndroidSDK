@@ -45,7 +45,8 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
 		import java.util.Map;
 
 		public class MainActivity extends AppCompatActivity {
-    	
+    	   private RCNactiveJSWidgetView widgetView = null;
+
         	@Override
             private RCNactiveJSWidgetView widgetView = null
     		protected void onCreate(Bundle savedInstanceState) {
