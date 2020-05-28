@@ -30,7 +30,7 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
 - In your app’s build.gradle add the dependency:
 
 	    dependencies{
-            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.0'
+            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.1'
         }
 
 ## Usage
@@ -52,11 +52,15 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
        		 super.onCreate(savedInstanceState);
         		RCNativeSDK.setup();
         	    widgetView = new RCNactiveJSWidgetView(this);
+                // WidgetId is required
+                widgetView.setWidgetId("66620");  
+                // WidgetSubId is optional
         		Map map = new HashMap();
         		map.put("category","entertainment");
         		map.put("utm_code","123456");
-        		widgetView.setWidgetId("66620");
         		widgetView.setWidgetSubId(map);
+                // baseUrl is optional
+                widgetView.setBaseUrl("https://performance.revcontent.dev");
         		setContentView(widgetView);
         		widgetView.loadWidget();
     		}
