@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("utm_code","123456");
         widgetView.setWidgetId("66620");
         widgetView.setWidgetSubId(map);
+        widgetView.setBaseUrl("https://performance.revcontent.dev");
         setContentView(widgetView);
         widgetView.loadWidget();
     }

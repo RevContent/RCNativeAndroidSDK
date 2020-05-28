@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.util.Map;
 
 public final class RCNactiveJSWidgetView extends WebView {
-    private final String baseURL = "https://performance.revcontent.dev";
+    private final String defaultBaseURL = "https://performance.revcontent.dev";
     private final String widgetHostKey = "{widget-host}";
     private final String widgetHostVal = "habitat";
     private final String endPointKey = "{endpoint}";
@@ -26,6 +26,7 @@ public final class RCNactiveJSWidgetView extends WebView {
 
     private String htmlWidget = null;
     private String widgetId = null;
+    private String baseUrl = null;
     private String siteUrl = null;
     private Map<String,String> widgetSubId = null;
 
@@ -48,6 +49,10 @@ public final class RCNactiveJSWidgetView extends WebView {
         this.siteUrl = siteUrl;
     }
 
+    public void setBaseUrl(String baseUrl){
+        this.baseUrl = baseUrl;
+    }
+
     public void setWidgetSubId(Map<String,String> widgetSubId){
         this.widgetSubId = widgetSubId;
     }
@@ -62,7 +67,11 @@ public final class RCNactiveJSWidgetView extends WebView {
         String message = this.validateWidget();
         if(message == null){
             String html = this.generateWidgetHTML();
-            this.loadDataWithBaseURL(baseURL,html,"text/html","UTF-8",null);
+            if(this.baseUrl != null){
+                this.loadDataWithBaseURL(this.baseUrl,html,"text/html","UTF-8",null);
+            }else{
+                this.loadDataWithBaseURL(defaultBaseURL,html,"text/html","UTF-8",null);
+            }
         }else{
             System.out.println(message);
         }
