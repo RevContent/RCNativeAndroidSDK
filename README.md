@@ -31,7 +31,7 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
 - In your app’s build.gradle add the dependency:
 
 	    dependencies{
-            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.1'
+            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.2'
         }
 
 ## Usage
