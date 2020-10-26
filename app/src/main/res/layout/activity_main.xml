@@ -7,4 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quam diam, tempor quis varius congue, rutrum vel risus. Mauris sagittis, augue vitae tincidunt volutpat, mauris libero tincidunt eros, nec lobortis sapien urna ut ante. Mauris sed neque at elit elementum fringilla id nec magna. Maecenas sed rhoncus ipsum. Nunc ultricies quis tellus nec gravida. "
+                android:padding="16dp" />
+
+            <com.revcontent.rcnativeandroidsdk.RCNativeJSWidgetView
+                android:id="@+id/rc_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quam diam, tempor quis varius congue, rutrum vel risus. Mauris sagittis, augue vitae tincidunt volutpat, mauris libero tincidunt eros, nec lobortis sapien urna ut ante. Mauris sed neque at elit elementum fringilla id nec magna. Maecenas sed rhoncus ipsum. Nunc ultricies quis tellus nec gravida. "
+                android:padding="16dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
