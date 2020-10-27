@@ -37,40 +37,32 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
 ## Usage
 
 ```
-package com.revcontent.rcnativeandroidsdkexample;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import com.revcontent.rcnativeandroidsdk.RCNactiveJSWidgetView;
-import com.revcontent.rcnativeandroidsdk.RCNativeSDK;
-import java.util.HashMap;
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
-    private RCNactiveJSWidgetView widgetView = null;
 
     @Override
-    private RCNactiveJSWidgetView widgetView = null
-    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Should be called before widget usage
         RCNativeSDK.setup();
-        widgetView = new RCNactiveJSWidgetView(this);
-        
+
+        // Get the widget view from layout
+        RCNativeJSWidgetView widgetView = findViewById(R.id.rc_widget);
+
         // WidgetId is required
-        widgetView.setWidgetId("66620");  
-        
+        widgetView.setWidgetId("168072");
+
         // WidgetSubId is optional
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<>();
         map.put("category","entertainment");
         map.put("utm_code","123456");
         widgetView.setWidgetSubId(map);
-        
+
         // baseUrl defined here
-        widgetView.setBaseUrl("https://www.yoursite.com/article/1");
-        
-        setContentView(widgetView);
+        widgetView.setBaseUrl("https://performance.revcontent.dev");
         widgetView.loadWidget();
-     }
+    }
 }
 ```
         
