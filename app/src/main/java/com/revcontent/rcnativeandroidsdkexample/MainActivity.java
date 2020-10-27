@@ -12,17 +12,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RCNativeSDK.setup();
         setContentView(R.layout.activity_main);
-        //RCNativeJSWidgetView widgetView = new RCNativeJSWidgetView(this);
+        // Should be called before widget usage
+        RCNativeSDK.setup();
+
+        // Get the widget view from layout
         RCNativeJSWidgetView widgetView = findViewById(R.id.rc_widget);
+
+        // WidgetId is required
+        widgetView.setWidgetId("168072");
+
+        // WidgetSubId is optional
         Map<String, String> map = new HashMap<>();
         map.put("category","entertainment");
         map.put("utm_code","123456");
-        widgetView.setWidgetId("168072");
         widgetView.setWidgetSubId(map);
+
+        // baseUrl defined here
         widgetView.setBaseUrl("https://performance.revcontent.dev");
-       // setContentView(widgetView);
         widgetView.loadWidget();
     }
 }
