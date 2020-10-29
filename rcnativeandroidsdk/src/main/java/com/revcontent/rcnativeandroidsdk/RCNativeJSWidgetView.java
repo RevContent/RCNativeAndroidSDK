@@ -27,6 +27,7 @@ public final class RCNativeJSWidgetView extends WebView {
     private String baseUrl = null;
     private String siteUrl = null;
     private Map<String, String> widgetSubId = null;
+    private OnSizeChangedListener sizeChangedListener = null;
 
     public RCNativeJSWidgetView(Context context) {
         super(context);
@@ -43,9 +44,37 @@ public final class RCNativeJSWidgetView extends WebView {
         initWidget();
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int ow, int oh) {
+        super.onSizeChanged(w, h, ow, oh);
+        if (sizeChangedListener != null) {
+            sizeChangedListener.onSizeChanged(h, w);
+        }
+    }
+
     public void initWidget() {
         this.loadHTMLContent();
         this.getSettings().setJavaScriptEnabled(true);
+    }
+
+    /**
+     * Adds the listener for the changes of view's height and width.
+     * If you'd like to receive all resizing callbacks, call this method before {@link #initWidget}
+     * method.
+     * {@link com.revcontent.rcnativeandroidsdk.RCNativeJSWidgetView} currently supports one
+     * OnSizeChangedListener.
+     *
+     * @param sizeChangedListener OnSizeChangedListener;
+     */
+    public void addOnSizeChangedListener(OnSizeChangedListener sizeChangedListener) {
+        this.sizeChangedListener = sizeChangedListener;
+    }
+
+    /**
+     * Removes the listener for the changes of view's height and width.
+     */
+    public void removeOnSizeChangedListener() {
+        this.sizeChangedListener = null;
     }
 
     private void loadHTMLContent() {
