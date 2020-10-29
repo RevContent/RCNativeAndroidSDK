@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         // baseUrl defined here
         widgetView.setBaseUrl("https://performance.revcontent.dev");
+
+        //will load the given data into widget;
         widgetView.loadWidget();
     }
 }

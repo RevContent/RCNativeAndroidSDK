@@ -31,10 +31,12 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
 - In your app’s build.gradle add the dependency:
 
 	    dependencies{
-            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.2'
+            implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.4'
         }
 
 ## Usage
+
+#### Basic usage in app
 
 ```
 public class MainActivity extends AppCompatActivity {
@@ -61,9 +63,26 @@ public class MainActivity extends AppCompatActivity {
 
         // baseUrl defined here
         widgetView.setBaseUrl("https://performance.revcontent.dev");
+
+        //will load the given data into widget;
         widgetView.loadWidget();
     }
 }
+```
+
+#### Using OnSizeChangedListener
+
+```
+        //Optionally, you can add a listener for the widget's size changes.
+        widgetView.addOnSizeChangedListener(new OnSizeChangedListener() {
+            @Override
+            public void onSizeChanged(int height, int width) {
+                //add your code here
+            }
+        });
+
+        //OnSizeChangedListener can be removed like this:
+        widgetView.removeOnSizeChangedListener();
 ```
         
  ## License
