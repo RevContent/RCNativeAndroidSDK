@@ -84,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         //OnSizeChangedListener can be removed like this:
         widgetView.removeOnSizeChangedListener();
 ```
+
+## Changelog
+
+https://github.com/RevContent/RCNativeAndroidSDK/blob/master/CHANGELOG.md
         
  ## License
  
