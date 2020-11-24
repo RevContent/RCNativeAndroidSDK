@@ -1,6 +1,8 @@
 package com.revcontent.rcnativeandroidsdkexample;
 
 import android.os.Bundle;
+import android.webkit.WebView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.revcontent.rcnativeandroidsdk.RCNativeJSWidgetView;
 import com.revcontent.rcnativeandroidsdk.RCNativeSDK;
