@@ -3,6 +3,9 @@ package com.revcontent.rcnativeandroidsdk;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.webkit.WebView;
+
+import androidx.annotation.NonNull;
+
 import org.json.JSONObject;
 import java.util.Map;
 
@@ -21,6 +24,18 @@ public final class RCNativeJSWidgetView extends WebView {
     private final String widgetIdKey = "{widget-id}";
     private final String widgetSubIdKey = "{sub-ids}";
     private final String sourceUrlKey = "{source-url}";
+
+    private final String gdprIsApplicableParam = "data-gdpr=";
+    private final String gdprIsApplicableKey = "{gdpr}";
+    private  String gdprIsApplicableVal = "";
+
+    private final String gdprConsentParam = "data-gdpr-consent=";
+    private final String gdprConsentKey = "{gdpr-consent}";
+    private  String gdprConsentVal = "";
+
+    private final String usPrivacyParam = "data-us-privacy=";
+    private final String usPrivacyKey = "{us-privacy}";
+    private  String usPrivacyVal = "";
 
     private String htmlWidget = null;
     private String widgetId = null;
@@ -79,7 +94,7 @@ public final class RCNativeJSWidgetView extends WebView {
 
     private void loadHTMLContent() {
         this.htmlWidget =
-                "<!doctype html> <html> <head> <style> html, body { margin:0; padding: 0; } @media (prefers-color-scheme: dark) { html, body { background: #000; } }</style> </head> <body> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <div id=\"widget1\" data-rc-widget data-widget-host=\"{widget-host}\" data-endpoint=\"{endpoint}\" data-is-secured=\"{is-secured}\" data-widget-id=\"{widget-id}\" data-sub-ids=\"{sub-ids}\"></div><script src=\"{js-src}\" defer=\"{defer}\"> </script> </body> </html>";
+                "<!doctype html> <html> <head> <style> html, body { margin:0; padding: 0; } @media (prefers-color-scheme: dark) { html, body { background: #000; } }</style> </head> <body> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <div id=\"widget1\" data-rc-widget data-widget-host=\"{widget-host}\" data-endpoint=\"{endpoint}\" data-gdpr={gdpr} data-gdpr-consent={gdpr-consent} data-us-privacy={us-privacy} data-is-secured=\"{is-secured}\" data-widget-id=\"{widget-id}\" data-sub-ids=\"{sub-ids}\"></div><script src=\"{js-src}\" defer=\"{defer}\"> </script> </body> </html>";
     }
 
     public void setWidgetId(String widgetId) {
@@ -88,6 +103,42 @@ public final class RCNativeJSWidgetView extends WebView {
 
     public void setSiteUrl(String siteUrl) {
         this.siteUrl = siteUrl;
+    }
+    /**
+     * Method should be called before {@link #loadWidget} to apply GDPR consent parameters.
+     *
+     * @param isGDPRApplicable determines whether GDPR is applicable
+     * @param consentString GDPR consent string. Is IAB standard URL-safe base64 encoded value
+     */
+    public void setGDPRConsentInfo(@NonNull Boolean isGDPRApplicable, @NonNull String consentString) {
+        this.gdprIsApplicableVal = getStringWithParentheses( isGDPRApplicable ? "1" : "0");
+        this.gdprConsentVal = getStringWithParentheses(consentString);
+    }
+
+    /**
+     * Clears GDPR consent parameters applied via method  {@link #setGDPRConsentInfo}
+     * To reload widget call method  {@link #loadWidget()} after it.
+     */
+    public void clearGDPRConsentInfo() {
+        this.gdprIsApplicableVal = "";
+        this.gdprConsentVal = "";
+    }
+
+    /**
+     * Method should be called before {@link #loadWidget} to apply CCPA consent parameter.
+     *
+     * @param consentString CCPA consent string. Is IAB standard URL-encoded U.S. Privacy string.
+     */
+    public void setUSPrivacyConsentInfo(@NonNull String consentString) {
+        this.usPrivacyVal = getStringWithParentheses(consentString);
+    }
+
+    /**
+     * Clears CCPA consent parameter applied via method  {@link #setUSPrivacyConsentInfo}
+     * To reload widget call method {@link #loadWidget()} after it.
+     */
+    public void clearUSPrivacyConsentInfo() {
+        this.usPrivacyVal = "";
     }
 
     public void setBaseUrl(String baseUrl) {
@@ -131,6 +182,10 @@ public final class RCNativeJSWidgetView extends WebView {
         return null;
     }
 
+    private String getStringWithParentheses(String text){
+        return String.format("\"%s\"", text);
+    }
+
     private String generateWidgetHTML() {
         String result = this.htmlWidget.replace(widgetHostKey, widgetHostVal);
         result = result.replace(endPointKey, endPointVal);
@@ -139,6 +194,8 @@ public final class RCNativeJSWidgetView extends WebView {
         //   result = result.replace(sourceUrlKey,this.siteUrl)
         result = result.replace(jsSrcKey, jsSrcVal);
         result = result.replace(deferKey, deferVal);
+        result = updateGDPRConsentParams(result);
+        result = updateCCPAConsentParam(result);
         if (this.widgetSubId != null) {
             JSONObject jsonObject = new JSONObject(this.widgetSubId);
             String jsonString = jsonObject.toString();
@@ -149,5 +206,30 @@ public final class RCNativeJSWidgetView extends WebView {
             result = result.replace(widgetSubIdKey, "");
         }
         return result;
+    }
+
+    private String updateGDPRConsentParams(String htmlText){
+        String resultText = htmlText;
+        if (!gdprIsApplicableVal.isEmpty() && !gdprConsentVal.isEmpty()){
+            resultText = resultText.replace(gdprIsApplicableKey, gdprIsApplicableVal);
+            resultText = resultText.replace(gdprConsentKey, gdprConsentVal);
+        } else {
+            resultText = resultText.replace(gdprIsApplicableParam, "");
+            resultText = resultText.replace(gdprIsApplicableKey, "");
+            resultText = resultText.replace(gdprConsentParam, "");
+            resultText = resultText.replace(gdprConsentKey, "");
+        }
+        return resultText;
+    }
+
+    private String updateCCPAConsentParam(String htmlText){
+        String resultText = htmlText;
+        if (!usPrivacyVal.isEmpty()){
+            resultText = resultText.replace(usPrivacyKey, usPrivacyVal);
+        } else {
+            resultText = resultText.replace(usPrivacyParam, "");
+            resultText = resultText.replace(usPrivacyKey, "");
+        }
+        return resultText;
     }
 }
