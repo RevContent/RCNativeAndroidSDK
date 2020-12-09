@@ -92,6 +92,16 @@ public final class RCNativeJSWidgetView extends WebView {
         this.sizeChangedListener = null;
     }
 
+    /**
+     * Clears the resource cache. Note that the cache is per-application, so this will clear the
+     * cache for all WebViews used.
+     *
+     * @param includeDiskFiles if false, only the RAM cache is cleared;
+     */
+    public void removeCache(boolean includeDiskFiles) {
+        clearCache(includeDiskFiles);
+    }
+
     private void loadHTMLContent() {
         this.htmlWidget =
                 "<!doctype html> <html> <head> <style> html, body { margin:0; padding: 0; } @media (prefers-color-scheme: dark) { html, body { background: #000; } }</style> </head> <body> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <div id=\"widget1\" data-rc-widget data-widget-host=\"{widget-host}\" data-endpoint=\"{endpoint}\" data-gdpr={gdpr} data-gdpr-consent={gdpr-consent} data-us-privacy={us-privacy} data-is-secured=\"{is-secured}\" data-widget-id=\"{widget-id}\" data-sub-ids=\"{sub-ids}\"></div><script src=\"{js-src}\" defer=\"{defer}\"> </script> </body> </html>";

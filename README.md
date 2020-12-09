@@ -1,5 +1,5 @@
 
-## Introduction:
+## Introduction
 
 Revcontent's Android library written in Java for enables you quickly and reliably include our JS widgets into your application.
 
@@ -73,16 +73,28 @@ public class MainActivity extends AppCompatActivity {
 #### Using OnSizeChangedListener
 
 ```
-        //Optionally, you can add a listener for the widget's size changes.
-        widgetView.addOnSizeChangedListener(new OnSizeChangedListener() {
-            @Override
-            public void onSizeChanged(int height, int width) {
-                //add your code here
-            }
-        });
+//Optionally, you can add a listener for the widget's size changes.
+widgetView.addOnSizeChangedListener(new OnSizeChangedListener() {
+    @Override
+    public void onSizeChanged(int height, int width) {
+    //add your code here
+    }
+});
 
-        //OnSizeChangedListener can be removed like this:
-        widgetView.removeOnSizeChangedListener();
+//OnSizeChangedListener can be removed like this:
+widgetView.removeOnSizeChangedListener();
+```
+
+#### Clear cache
+
+```
+//You can clear cache by this method. Note that the cache is per-application, so this will clear
+//the cache for all WebViews used.
+//
+//Boolean parameter used:
+//false - only the RAM cache is cleared,
+//true - both the RAM cache and the cache on the disk files clears;
+widgetView.removeCache(true);
 ```
 
 ## GDPR
@@ -168,6 +180,10 @@ Check out [Google’s Step-By-Step Guide](https://support.google.com/dfp_premium
 
 ### Need more Information?
 You can learn more about this IAB initiative [here](https://iabtechlab.com/ads-txt/). For more information from Revcontent, feel free to reach out to your Publisher Account Representative.
+
+## Changelog
+
+History of all changes is available [here](https://github.com/RevContent/RCNativeAndroidSDK/blob/master/CHANGELOG.md).
 
 ## License
 
