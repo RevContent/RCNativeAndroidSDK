@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         widgetView.removeOnSizeChangedListener();
 ```
 
-
 ## GDPR
 
 The General Data Protection Regulation (GDPR) is the toughest privacy and security law in the world. Though it was drafted and passed by the European Union (EU), it imposes obligations onto organizations anywhere, so long as they target or collect data related to people in the EU. The regulation was put into effect on May 25, 2018.
@@ -171,5 +170,5 @@ Check out [Google’s Step-By-Step Guide](https://support.google.com/dfp_premium
 You can learn more about this IAB initiative [here](https://iabtechlab.com/ads-txt/). For more information from Revcontent, feel free to reach out to your Publisher Account Representative.
 
 ## License
- 
+
  MIT
