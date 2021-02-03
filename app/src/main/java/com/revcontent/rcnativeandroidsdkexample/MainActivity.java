@@ -1,9 +1,14 @@
 package com.revcontent.rcnativeandroidsdkexample;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.revcontent.rcnativeandroidsdk.RCNativeJSWidgetView;
 import com.revcontent.rcnativeandroidsdk.RCNativeSDK;
+import com.revcontent.rcnativeandroidsdk.banner.BannerSize;
+import com.revcontent.rcnativeandroidsdk.banner.RCNativeSliderBanner;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,5 +38,19 @@ public class MainActivity extends AppCompatActivity {
 
         //will load the given data into widget;
         widgetView.loadWidget();
+
+        initBanner();
+    }
+
+    private void initBanner() {
+        // Create instance of banner.
+        // RCNativeSliderBanner will try and find a parent view to hold RCNativeSliderBanner view
+        // from the value given to view;
+        final RCNativeSliderBanner banner = new RCNativeSliderBanner(findViewById(R.id.main));
+
+        // Start loading banner.
+        // Once loaded, banner will appear from the bottom of parent view.
+        // Required parameters - widgetID & BannerSize from public enum.
+        banner.loadBanner(1233, BannerSize.W970XH250);
     }
 }
