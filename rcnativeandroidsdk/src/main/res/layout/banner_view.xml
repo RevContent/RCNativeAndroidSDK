@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.revcontent.rcnativeandroidsdk.banner.RCSliderBannerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/banner_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom|center_horizontal"
+    tools:background="@android:color/darker_gray"
+    tools:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/banner_close"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:background="@drawable/bg_bttn_rect_round_2_w_stroke"
+        android:scaleType="center"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toTopOf="@id/banner_web_view"
+        app:layout_constraintEnd_toEndOf="@+id/banner_web_view"
+        app:tint="@color/grey_main"
+        tools:ignore="ContentDescription" />
+
+    <com.revcontent.rcnativeandroidsdk.banner.RCBannerWebView
+        android:id="@+id/banner_web_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</com.revcontent.rcnativeandroidsdk.banner.RCSliderBannerLayout>

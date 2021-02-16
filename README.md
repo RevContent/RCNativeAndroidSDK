@@ -34,7 +34,7 @@ Revcontent's Android library written in Java for enables you quickly and reliabl
             implementation 'com.github.RevContent:RCNativeAndroidSDK:0.1.5'
         }
 
-## Usage
+## RCNativeJSWidgetView
 
 #### Basic usage in app
 
@@ -137,6 +137,66 @@ widgetView.setUSPrivacyConsentInfo(ccpaConsent);
 //CCPA consent info should be provided before this method call
 widgetView.loadWidget();
 
+```
+
+## RCNativeSliderBanner
+
+#### Basic usage in app
+
+```
+// Create instance of banner.
+// RCNativeSliderBanner will try and find a parent view to hold RCNativeSliderBanner view
+// from the value given to view;
+final RCNativeSliderBanner banner = new RCNativeSliderBanner(findViewById(R.id.main));
+
+// Start loading banner.
+// Once loaded, banner will appear from the bottom of parent view.
+// Banner can be loaded only once. For the new banner create new banner instance.
+//
+// Required parameters - widgetID & BannerSize from public enum.
+banner.loadBanner(1233, BannerSize.W970XH250);
+```
+
+#### BannerEventListener
+
+```
+// Add a listener that will provide callbacks when:
+//  - the banner finished loading;
+//  - the banner was closed by user;
+//  - user was navigated by the link after tapping on the banner;
+banner.addEventListener(new BannerEventListener() {
+    @Override
+        public void onLoaded() {
+            Toast.makeText(getApplicationContext(), "onLoaded", Toast.LENGTH_SHORT).show();
+        }
+
+    @Override
+        public void onClosed() {
+            Toast.makeText(getApplicationContext(), "onClosed", Toast.LENGTH_SHORT).show();
+        }
+
+    @Override
+        public void onLinkTap() {
+            Toast.makeText(getApplicationContext(), "onLinkTap", Toast.LENGTH_SHORT).show();
+    }
+});
+
+// Remove event listener
+banner.removeEventListener();
+```
+#### Optional RCNativeSliderBanner settings
+
+```
+// You can set whether banner should be shown when loaded.
+// By default banner will be shown once finished loading.
+banner.showWhenLoaded(false);
+
+// In order to show banner, when the showWhenLoaded(false) was set, use this method
+banner.show();
+
+// Banner can be cancelled.
+// If visible - it will be closed and then detached from parent view.
+banner.cancel();
 ```
 
 ## Ads.txt for Publishers
